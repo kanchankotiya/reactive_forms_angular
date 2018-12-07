@@ -1,0 +1,70 @@
+<div class="conatiner">
+  <div class="row">
+    <div class="col-md-6 mx-auto mt-5 pt-5 mb-5 pb-5">
+      <div class="card">
+        <div class="card-header text-center">
+          <h2>Registration Form</h2>
+        </div>  
+        <div class="card-body">
+          <form  [formGroup]="registrationForm">
+          {{ registrationForm.value | json}}
+            <div class="form-group">
+              <label>Username</label>
+              <input [class.is-invalid]="userName.invalid && userName.touched" type="text" formControlName="userName" class="form-control">
+              <!-- <small [class.d-none] ="registrationForm.get('userName').valid || registrationForm.get('userName').untouched" class="text-danger">User Name is Required</small> -->
+              <div *ngIf= "userName.invalid && userName.touched">
+                <!-- <small *ngIf="registrationForm.get('userName').errors?.required" class="text-danger">Username is required</small><br>
+                <small  *ngIf="registrationForm.get('userName').errors?.minlength" class="text-danger">Username must be atleast 3 cherecters</small> -->
+                <small *ngIf="userName.errors.required" class="text-danger">Username is required</small><br>
+                <small  *ngIf="userName.errors.minlength" class="text-danger">Username must be atleast 3 cherecters</small>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Password</label>
+              <input [class.is-invalid]="password.invalid && password.touched" type="text" formControlName="password" type="password" formControlName="password" class="form-control">
+              <div *ngIf= "password.invalid && password.touched">
+                <small *ngIf="password.errors.required" class="text-danger">Password is required</small><br>
+                <small  *ngIf="password.errors.minlength" class="text-danger">Password must be atleast 6 cherecters</small>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Confirm Password</label>
+              <input [class.is-invalid]="confirmPassword.invalid && confirmPassword.touched" type="text" formControlName="password" type="password" formControlName="confirmPassword" class="form-control">
+              <div *ngIf= "confirmPassword.invalid && confirmPassword.touched">
+                <small *ngIf="confirmPassword.errors.required" class="text-danger">ConfirmPassword is required</small><br>
+                <small  *ngIf="confirmPassword.errors.minlength" class="text-danger">ConfirmPassword must be atleast 6 cherecters</small>
+              </div>
+            </div>
+
+            <div formGroupName="address">
+              <h3>Address</h3>  
+
+              <div class="form-group">
+                <label>City</label>
+                <input type="text"  class="form-control"  formControlName="city">
+              </div>
+
+              <div class="form-group">
+                <label>State</label>
+                <input type="text"  class="form-control"  formControlName="state">
+              </div>
+
+              <div class="form-group">
+                <label>Zip Code</label>
+                <input type="text"  class="form-control"  formControlName="zipCode">
+              </div>
+            </div>  
+
+            <button type="submit" class="btn btn-primary">Register</button>
+            <button type="button" class="ml-3 btn btn-secondary" (click)="loadApiData()">Managing API Data</button>
+          </form>
+           
+          
+        </div>
+      </div>  
+    </div>  
+  </div>  
+</div>
+<router-outlet></router-outlet>
